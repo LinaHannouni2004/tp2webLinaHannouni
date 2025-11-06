@@ -30,6 +30,9 @@ public class Bb implements Serializable {
 
 
 
+    private boolean roleSystemeChangeable = true;
+    public boolean isRoleSystemeChangeable() { return roleSystemeChangeable; }
+    public void setRoleSystemeChangeable(boolean b) { this.roleSystemeChangeable = b; }
 
 
     private List<SelectItem> listeRolesSysteme;
