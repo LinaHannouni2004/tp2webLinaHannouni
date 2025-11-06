@@ -26,7 +26,7 @@ public class LlmClient implements Serializable {
     private final Assistant assistant;
     // Clé pour l'API du LLM
     private final String key;
-   
+
 
     public LlmClientPourGemini() {
         // Récupère la clé secrète pour travailler avec l'API du LLM, mise dans une variable d'environnement
