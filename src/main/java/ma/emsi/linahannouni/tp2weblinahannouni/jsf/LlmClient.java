@@ -2,23 +2,18 @@ package ma.emsi.linahannouni.tp2weblinahannouni.jsf;
 
 
 
+import dev.langchain4j.memory.ChatMemory;
+import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.service.AiServices;
 import jakarta.enterprise.context.Dependent;
 import jakarta.ws.rs.client.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-
+import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import java.io.Serializable;
+import dev.langchain4j.data.message.SystemMessage;
 
-/**
- * Gère l'interface avec l'API de Gemini.
- * Son rôle est essentiellement de lancer une requête à chaque nouvelle
- * question qu'on veut envoyer à l'API.
- *
- * De portée dependent pour réinitialiser la conversation à chaque fois que
- * l'instance qui l'utilise est renouvelée.
- * Par exemple, si l'instance qui l'utilise est de portée View, la conversation est
- * réunitialisée à chaque fois que l'utilisateur quitte la page en cours.
- */
+
+
 @Dependent
 public class LlmClient implements Serializable {
 
@@ -28,9 +23,8 @@ public class LlmClient implements Serializable {
     private final String key;
 
 
-    public LlmClientPourGemini() {
-        // Récupère la clé secrète pour travailler avec l'API du LLM, mise dans une variable d'environnement
-        // du système d'exploitation.
+    public LlmClient() {
+
         this.key = System.getenv("GEMINI_KEY");
 
 
@@ -39,8 +33,8 @@ public class LlmClient implements Serializable {
             throw new IllegalStateException(" Variable d'environnement GEMINI_API_KEY non définie !");
         }
 
-        ChatLanguageModel model = GoogleAiChatModel.builder()
-                .apiKey(apiKey)
+        ChatModel model = GoogleAiGeminiChatModel.builder()
+                .apiKey(key)
                 .modelName("gemini-2.5-flash")
                 .build();
 
@@ -49,6 +43,8 @@ public class LlmClient implements Serializable {
                 .chatModel(model)
                 .chatMemory(chatMemory)
                 .build();
+        }
+
         public void setSystemRole(String roleSysteme) {
             chatMemory.clear();
             chatMemory.add(new SystemMessage(roleSysteme));
@@ -63,6 +59,5 @@ public class LlmClient implements Serializable {
 
     }
 
-}
 
 

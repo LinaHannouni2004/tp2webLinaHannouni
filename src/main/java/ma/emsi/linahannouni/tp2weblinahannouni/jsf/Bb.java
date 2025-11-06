@@ -22,37 +22,20 @@ public class Bb implements Serializable {
      * Possible d'écrire un nouveau rôle dans la liste déroulante.
      */
     private String roleSysteme;
-    private  boolean isDebug;
 
-    public boolean isDebug() {
-        return isDebug;
-    }
 
-    public void setDebug(boolean debug) {
-        isDebug = debug;
-    }
-    public void toggleDebug() {
-        this.setDebug(!isDebug());
-    }
-    private String texteRequeteJson;
-    private String texteReponseJson;
 
-    public String getTexteRequeteJson() { return texteRequeteJson; }
-    public String getTexteReponseJson() { return texteReponseJson; }
-    /**
-     * Quand le rôle est choisi par l'utilisateur dans la liste déroulante,
-     * il n'est plus possible de le modifier (voir code de la page JSF), sauf si on veut un nouveau chat.
-     */
-    private boolean roleSystemeChangeable = true;
 
-    /**
-     * Liste de tous les rôles de l'API prédéfinis.
-     */
+
+
+
+
+
+
     private List<SelectItem> listeRolesSysteme;
     @Inject
-    private LlmClientPourGemini llmClient;
-    @Inject
-    private JsonUtilPourGemini jsonUtil;
+    private LlmClient llmClient;
+
     /**
      * Dernière question posée par l'utilisateur.
      */
@@ -86,9 +69,6 @@ public class Bb implements Serializable {
         this.roleSysteme = roleSysteme;
     }
 
-    public boolean isRoleSystemeChangeable() {
-        return roleSystemeChangeable;
-    }
 
     public String getQuestion() {
         return question;
