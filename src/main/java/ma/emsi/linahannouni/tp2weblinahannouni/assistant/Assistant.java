@@ -1,4 +1,4 @@
-package ma.emsi.linahannouni.tp2weblinahannouni.jsf;
+package ma.emsi.linahannouni.tp2weblinahannouni.jsf.assistant;
 
 
 public interface Assistant {

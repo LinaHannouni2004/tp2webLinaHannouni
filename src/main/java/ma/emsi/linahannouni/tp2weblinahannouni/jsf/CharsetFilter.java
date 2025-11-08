@@ -1,4 +1,4 @@
-package ma.emsi.linahannouni.tp2weblinahannouni.jsf;
+package ma.emsi.linahannouni.tp2weblinahannouni.jsf.jsf;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;

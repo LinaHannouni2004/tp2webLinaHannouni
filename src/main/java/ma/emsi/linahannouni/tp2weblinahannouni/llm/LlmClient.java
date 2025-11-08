@@ -1,4 +1,4 @@
-package ma.emsi.linahannouni.tp2weblinahannouni.jsf;
+package ma.emsi.linahannouni.tp2weblinahannouni.jsf.llm;
 
 
 
@@ -6,12 +6,11 @@ import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.service.AiServices;
 import jakarta.enterprise.context.Dependent;
-import jakarta.ws.rs.client.*;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import java.io.Serializable;
 import dev.langchain4j.data.message.SystemMessage;
-
+import ma.emsi.linahannouni.tp2weblinahannouni.jsf.assistant.Assistant;
 
 
 @Dependent
@@ -45,12 +44,17 @@ public class LlmClient implements Serializable {
                 .build();
         }
 
-        public void setSystemRole(String roleSysteme) {
-            chatMemory.clear();
+
+
+    public void setSystemRole(String roleSysteme) {
+        chatMemory.clear();
+        if (roleSysteme != null && !roleSysteme.isBlank()) {
             chatMemory.add(new SystemMessage(roleSysteme));
         }
+    }
 
-        /**
+
+    /**
          * Envoie une requête au LLM et renvoie sa réponse.
          */
         public String envoyerQuestion(String question) {

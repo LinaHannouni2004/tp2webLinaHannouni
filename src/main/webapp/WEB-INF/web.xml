@@ -9,7 +9,7 @@
 </welcome-file-list>
 <filter>
 <filter-name>CharsetFilter</filter-name>
-<filter-class>ma.emsi.linahannouni.tp2weblinahannouni.jsf.CharsetFilter</filter-class>
+<filter-class>ma.emsi.linahannouni.tp2weblinahannouni.jsf.jsf.CharsetFilter</filter-class>
 </filter>
 <filter-mapping>
 <filter-name>CharsetFilter</filter-name>
