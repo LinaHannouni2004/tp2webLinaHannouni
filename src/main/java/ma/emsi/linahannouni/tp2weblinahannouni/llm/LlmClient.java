@@ -1,4 +1,4 @@
-package ma.emsi.linahannouni.tp2weblinahannouni.jsf.llm;
+package ma.emsi.linahannouni.tp2weblinahannouni.llm;
 
 
 
@@ -16,6 +16,7 @@ import ma.emsi.linahannouni.tp2weblinahannouni.jsf.assistant.Assistant;
 @Dependent
 public class LlmClient implements Serializable {
 
+    private String systemRole;
     private final ChatMemory chatMemory;
     private final Assistant assistant;
     // Clé pour l'API du LLM
@@ -47,6 +48,9 @@ public class LlmClient implements Serializable {
 
 
     public void setSystemRole(String roleSysteme) {
+
+        this.systemRole = roleSysteme;
+
         chatMemory.clear();
         if (roleSysteme != null && !roleSysteme.isBlank()) {
             chatMemory.add(new SystemMessage(roleSysteme));

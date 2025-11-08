@@ -1,4 +1,4 @@
-package ma.emsi.linahannouni.tp2weblinahannouni.jsf.jsf;
+package ma.emsi.linahannouni.tp2weblinahannouni.jsf;
 
 
 
@@ -8,7 +8,7 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import ma.emsi.linahannouni.tp2weblinahannouni.jsf.llm.LlmClient;
+import ma.emsi.linahannouni.tp2weblinahannouni.llm.LlmClient;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -125,6 +125,10 @@ public class Bb implements Serializable {
         }
 
         try {
+            if (roleSystemeChangeable) {
+                llmClient.setSystemRole(roleSysteme);
+                roleSystemeChangeable = false;
+            }
             this.reponse = llmClient.envoyerQuestion(question);
 
         } catch (Exception e) {
